@@ -49,7 +49,7 @@ import json
       <a class="license" rel="license" href="http://creativecommons.org/licenses/by/3.0/">
         <img alt="Creative Commons License" style="border-width:0" src="http://i.creativecommons.org/l/by/3.0/88x31.png" />
       </a>
-      <a class="augnotes-badge" href="http://www.augmentednotes.com">
+      <a class="augnotes-badge" href="https://kam535.github.io/improved-octo-potato/">
         <img alt="Powered by Augmented Notes" style="border-width:0" src="./static/img/augnotes_badge.png" width="88px"/>
       </a>
     </div>

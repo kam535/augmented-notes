@@ -1,0 +1,129 @@
+<head>
+<link type="text/css" rel="stylesheet" href="/static/css/style.css"/>
+<script src="/static/js/jquery.js"></script>
+<script src="/static/js/jquery-ui.js"></script>
+  <link rel="stylesheet" type="text/css" href="http://code.jquery.com/ui/1.9.2/themes/base/jquery-ui.css">
+<title>
+    
+    Augmented Notes
+    
+  </title>
+  <meta name="description" content="Augmented Notes is a tool for creating websites that facilitate interdisciplinary music and text scholarship."/>
+  
+<script>
+$(function() {
+  var template = $(".score-upload").eq(0).clone();
+  template.find("label").text("");
+  $(".add-score-upload").click(function() {
+    var new_block = template.clone();
+    $(".score-upload-list").append(new_block);
+    new_block.find("input").click();
+  })
+})
+</script>
+
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-44029101-1', 'augmentednotes.com');
+  ga('send', 'pageview');
+
+</script>
+</head>
+<body>
+  <div class="center-content">
+    
+      <div id="header">
+        
+          <div id="header-left">
+            <img src="/static/img/augnotes_badge.png" class="header-logo">
+          </div>
+          <div id="header-right">
+            <b>
+              A Tool for Producing Interdisciplinary Music and Text Scholarship
+            </b>
+          </div>
+          <div style="clear:both"></div>
+        
+      </div>
+      <div class="content">
+        
+  <div class="instructions">
+    <h1>Welcome to Augmented Notes</h1>
+    <p>
+      Augmented Notes integrates scores and audio files to produce interactive
+      multimedia websites in which measures of the score are highlighted in time
+      with music.
+    </p><p>
+      You can see it in action
+       <a href="http://www.songsofthevictorians.com/balfe/archive.html">here</a>
+       as part of the digital archive in <a href="http://www.songsofthevictorians.com/">Songs of the Victorians</a>.
+    </p>
+      <p>
+        To get started making your own website, upload mp3 and ogg versions of your audio file, images of the pages of your score, and, if you have one, an MEI file containing measure boundaries, then hit submit below. Augmented Notes will help you mark the measures on the score and assign them times, and will output a zip file of everything you need to have your own website.
+      </p>
+      <p>
+        Want to try Augmented Notes, but don't have the right files? Click <a href="/example">here</a> to try it with Bach's Prelude No. 1 in C major (BWV 846) <a href="http://en.wikipedia.org/wiki/File:Johann_Sebastian_Bach_-_The_Well-tempered_Clavier_-_Book_1_-_02Epre_cmaj.ogg">performed by Martha Goldstein!</a>
+      </p>
+      <div class="empty-error"
+          style="display:none"
+        >
+        Please provide an MP3, an OGG, and score images.
+      </div>
+      <form action="http://www.augmentednotes.com/_ah/upload/AMmfu6aFusA7jA2hP6KOxAHU_TKhC7qSu4SOnfAFYjKRvVCUBS_cs44zTVKJeX_mLSsPseG7bX451Ue7hB1pAxE3zzmxkjmhg0R6CtO3EYu8TOyrgiI_Hu4/ALBNUaYAAAAAVhnKm6VCEf8xmxLgPvAC4jHrzg19DGNi/" method="POST" enctype="multipart/form-data">
+        <label class="upload-label" for="mp3">Upload MP3:</label>
+        <input type="file" name="mp3" id="mp3">
+        <br/>
+        <br/>
+        <label class="upload-label" for="ogg">Upload OGG:</label>
+        <input type="file" name="ogg" id="ogg">
+        <br/>
+        <span style="font-size:80%; color:#666">
+        (If you don't have an OGG, you can create one <a href="http://audio.online-convert.com/convert-to-ogg">here</a>)
+        </span>
+        <br/>
+        <br/>
+        <div class="score-upload-list">
+          <div class="score-upload">
+            <label class="upload-label">Upload Score:</label>
+            <input type="file" name="page">
+            <br/>
+          </div>
+        </div>
+        <label class="upload-label"></label>
+        <a class="add-score-upload">+ Add another page</a>
+        <br/>
+        <label class="upload-label" for="mei">Upload MEI (optional):</label>
+        <input type="file" name="mei" id="mei">
+        <br/>
+        <br/>
+        <input type="submit" name="submit" value="Submit"><br/>
+      </form>
+  </div>
+
+      </div>
+      <div class="footer">
+        
+          <a class="license" rel="license" href="http://creativecommons.org/licenses/by/3.0/">
+            <img alt="Creative Commons License" style="border-width:0" src="http://i.creativecommons.org/l/by/3.0/88x31.png" />
+          </a>
+          <div style="display:inline-block">
+            Developed by Joanna Swafford
+            <a style="display:none"
+            href="https://plus.google.com/112090517120755825501?rel=author"></a>
+            &nbsp;|&nbsp;
+            <a href="mailto:jes8zv@virginia.edu?Subject=Songs%20of%20the%20Victorians">
+              Email</a>
+            &nbsp;|&nbsp;
+            <a href="http://twitter.com/annieswafford" target="_blank">
+              Twitter
+            </a>
+          </div>
+        
+      </div>
+    
+  </div>
+  </body>

@@ -70,7 +70,7 @@ $(function() {
         >
         Please provide an MP3, an OGG, and score images. Note that all files must be hosted on a different server. Try using the <a href="archive.org">Internet Archive</a> for free hosting.
       </div>
-      <form action="display.html" method="GET" enctype="multipart/form-data">
+      <form action="display.html" method="POST" enctype="multipart/form-data">
         <label class="upload-label" for="mp3">Upload MP3:</label>
         <input type="url" name="mp3" id="mp3">
         <br/>
@@ -99,6 +99,17 @@ $(function() {
         <br/>
         <input type="submit" name="submit" value="Submit"><br/>
       </form>
+      <script>
+         var GET = {};
+         var queryString = window.location.search.replace(/^\?/, '');
+         queryString.split(/\&/).forEach(function(keyValuePair) {
+             var paramName = keyValuePair.replace(/=.*$/, ""); // some decoding is probably necessary
+             var paramValue = keyValuePair.replace(/^[^=]*\=/, ""); // some decoding is probably necessary
+             GET[paramName] = paramValue;
+         });
+         document.getElementById("myForm").getElementsByTagName("input")[0].value = GET["form/title"];
+         document.getElementById("myForm").getElementsByTagName("textarea")[0].value = GET["form/text"];
+     </script>
   </div>
       </div>
       <div class="footer">

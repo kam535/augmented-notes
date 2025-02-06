@@ -34,11 +34,13 @@
       </div>
       <div>
         <div class="score-div">
-          % for url in urls['pages']:
+          <script type="text/javascript">
+          for url in urls['pages']:
             <div class="score-page">
               <img class="score" src="${url}" width="542px" alt="Scan">
             </div>
-          % endfor
+          endfor
+              </script>
         </div>
       </div>
     </div>

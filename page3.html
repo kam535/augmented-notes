@@ -1,14 +1,16 @@
-<%inherit file="base.mako"/>
-
-<%!
-	import json
-%>
-
-<%block name="title">
-	Select Measure Times
-</%block>
-
-<%block name="extrahead">
+<head>
+<link type="text/css" rel="stylesheet" href="https://kam535.github.io/improved-octo-potato/static/css/style.css"/>
+<script src="https://kam535.github.io/improved-octo-potato/static/js/jquery.js"></script>
+<script src="https://kam535.github.io/improved-octo-potato/static/js/jquery-ui.js"></script>
+  <link rel="stylesheet" type="text/css" href="http://code.jquery.com/ui/1.9.2/themes/base/jquery-ui.css">
+<title>
+    
+    Augmented Notes
+    
+  </title>
+  <meta name="description" content="Augmented Notes is a tool for creating websites that facilitate interdisciplinary music and text scholarship."/>
+  
+<script>
 	<style>
 	.box {
 		display:none;
@@ -17,9 +19,10 @@
 		display:block;
 	}
 	</style>
-	<script src="/static/js/augnotes.js"></script>
-	<script src="/static/js/augnotesui.js"></script>
-	<script src="/static/js/augnotesTimeEdit.js"></script>
+		
+	<script src="https://kam535.github.io/improved-octo-potato/static/js/augnotes.js"></script>
+	<script src="https://kam535.github.io/improved-octo-potato/static/js/augnotesui.js"></script>
+	<script src="https://kam535.github.io/improved-octo-potato/static/js/augnotesTimeEdit.js"></script>
 	<script>
 		var augmented_notes_data = ${json.dumps(data)};
 	</script>
@@ -92,10 +95,10 @@
 		})
 	});
 	</script>
-</%block>
+</script>
 
 
-<%block name="content">
+<div class="content">
 	<div class="instructions">
 	<h1>Set the Measure Times</h1>
 	<p>To set the measure times, click on the "play" button for the audio file, and click the "save" button at the end of each measure. You can also click on the times to edit them directly. Once all the measures have been completed, you can click "back to start" and play from the beginning to confirm the times.</p>
@@ -134,4 +137,4 @@
 	<form id="augnotes_submission" style="display:none" action="/time_edit/${song_id}" method="POST">
 	  <input type='hidden' name="data"/>
 	</form>
-</%block>
+</div>

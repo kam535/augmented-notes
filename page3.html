@@ -107,11 +107,13 @@
 	</p>
 	</div>
 	<div class="left_panel score-div">
-		% for url in urls['pages']:
+		<script type="text/javascript">
+		for url in urls['pages']:
 			<div class="score-page">
 				<img class="score" src="${url}" width="350" alt="Scan">
 			</div>
-		% endfor
+		endfor
+		</script>
 	</div>
 	<div class="right_panel">
 		<div class="audtools">

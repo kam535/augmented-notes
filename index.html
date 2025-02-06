@@ -68,15 +68,15 @@ $(function() {
       <div class="empty-error"
           style="display:none"
         >
-        Please provide an MP3, an OGG, and score images.
+        Please provide an MP3, an OGG, and score images. Note that all files must be hosted on a different server. Try using the <a href="archive.org">Internet Archive</a> for free hosting.
       </div>
-      <form action="http://kam535.github.io/improved-octo-potato.php" method="POST" enctype="multipart/form-data">
+      <form action="" method="POST" enctype="multipart/form-data">
         <label class="upload-label" for="mp3">Upload MP3:</label>
-        <input type="file" name="mp3" id="mp3">
+        <input type="url" name="mp3" id="mp3">
         <br/>
         <br/>
         <label class="upload-label" for="ogg">Upload OGG:</label>
-        <input type="file" name="ogg" id="ogg">
+        <input type="url" name="ogg" id="ogg">
         <br/>
         <span style="font-size:80%; color:#666">
         (If you don't have an OGG, you can create one <a href="http://audio.online-convert.com/convert-to-ogg">here</a>)
@@ -86,7 +86,7 @@ $(function() {
         <div class="score-upload-list">
           <div class="score-upload">
             <label class="upload-label">Upload Score:</label>
-            <input type="file" name="page">
+            <input type="url" name="page">
             <br/>
           </div>
         </div>
@@ -94,7 +94,7 @@ $(function() {
         <a class="add-score-upload">+ Add another page</a>
         <br/>
         <label class="upload-label" for="mei">Upload MEI (optional):</label>
-        <input type="file" name="mei" id="mei">
+        <input type="url" name="mei" id="mei">
         <br/>
         <br/>
         <input type="submit" name="submit" value="Submit"><br/>

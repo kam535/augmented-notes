@@ -367,10 +367,9 @@ prevpg.click(function() {
   </p>
   </div>
         
-  <script>
   <div class="left_panel score-div">
       <div class="score-page">
-        <img class="score" src=document.getElementById("page").innerHTML>
+        <img class="score" src={<script>document.getElementById("page").innerHTML</script>}
       </div>
       <div class="score-page">
         <img class="score" src=document.getElementById("page").innerHTML>
@@ -384,7 +383,6 @@ prevpg.click(function() {
         Your browser does not support the audio tag!
       </audio>
     </div>
-    </script>
         
     <button class="button" id="new_box_btn">Add Boxes</button>
     <button class="button" id="renumber_selected">Renumber Selected Box</button>

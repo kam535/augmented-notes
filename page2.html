@@ -369,17 +369,17 @@ prevpg.click(function() {
         
   <div class="left_panel score-div">
       <div class="score-page">
-        <img class="score" src={<script>document.getElementById("page").innerHTML</script>}
+        <img class="score" src="document.getElementById('score').innerHTML= window.location.search"
       </div>
       <div class="score-page">
-        <img class="score" src=document.getElementById("page").innerHTML>
+        <img class="score" src="document.getElementById('score').innerHTML= window.location.search"
       </div>
   </div>
   <div class="right_panel" style="width:100px;">
     <div class="audtools" style="display:none">
       <audio style="width:100%" controls="controls">
-        <source id="ogg" src="document.getElementById("mp3").innerHTML = window.location.search" type="ogg"/>
-        <source id="mp3" src="document.getElementById("ogg").innerHTML = window.location.search" type="audio/mp3"/>
+        <source id="ogg" src="document.getElementById('mp3').innerHTML= window.location.search" type="ogg"/>
+        <source id="mp3" src="document.getElementById('ogg').innerHTML= window.location.search" type="audio/mp3"/>
         Your browser does not support the audio tag!
       </audio>
     </div>
@@ -393,7 +393,7 @@ prevpg.click(function() {
      <button class="send_augnotes button" type="button">Save and Continue</button>
   </div>
   <div style="clear:both"></div>
-  <form id="augnotes_submission" style="display:none" action="display2.html" method="POST">
+  <form id="augnotes_submission" style="display:none" action="page3.html" method="POST">
     <input type='hidden' name="data"/>
   </form>
 

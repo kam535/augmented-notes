@@ -295,8 +295,95 @@ class SongEditHandler extends webapp2.RequestHandler {
     const song = this.get_song_or_404(song_id);
     const urls = {};
     urls['mp3'] = serve_url(song.m);
-      }
-    }
-  }
-}
+    const urls = {};
+    urls['ogg'] = serveUrl(song.ogg.key());
+    urls['pages'] = song.page_list.map(key => serveUrl(key));
+    const data = JSON.parse(song.json);
+    const template = templates.getTemplate(this.templateName);
+    this.response.out.write(template.render({ data: data, urls: urls, song_id: song_id }));
 
+  post(song_id) {
+      checkLogin(this);
+      const song = this.getSongOr404(song_id);
+      song.json = this.request.get('data');
+      song.put();
+      this.redirect(this.nextUrl.replace('{0}', song.key().id()));
+  }
+  
+  class BoxEditHandler extends SongEditHandler {
+      templateName = 'box_edit.mako';
+      nextUrl = '/time_edit/{0}';
+  }
+  
+  class TimeEditHandler extends SongEditHandler {
+      templateName = 'time_edit.mako';
+      nextUrl = '/zip/{0}';
+  }
+  
+  class ZipFileHandler extends webapp2.RequestHandler {
+      get(song_id) {
+          checkLogin(this);
+          let songId;
+          try {
+              songId = parseInt(song_id);
+          } catch (error) {
+              this.error(404);
+              return;
+          }
+          const song = Song.getById(songId);
+          const output = new Blob();
+          const z = new JSZip();
+          z.file("export/data/music.mp3", blobstore.BlobReader(song.mp3).read());
+          z.file("export/data/music.ogg", blobstore.BlobReader(song.ogg).read());
+          z.file("export/static/js/augnotes.js", fs.readFileSync("export_assets/augnotes.js"));
+          z.file("export/static/js/augnotesui.js", fs.readFileSync("export_assets/augnotesui.js"));
+          z.file("export/static/js/jquery.js", fs.readFileSync("export_assets/jquery.js"));
+          z.file("export/static/css/export.css", fs.readFileSync("export_assets/export.css"));
+          z.file("export/static/img/augnotes_badge.png", fs.readFileSync("export_assets/augnotes_badge.png"));
+          const pageUrls = [];
+          for (const page of song.page_list) {
+              const pageInfo = blobstore.BlobInfo.get(page);
+              const fname = `export/data/pages/${pageInfo.filename}`;
+              pageUrls.push(`./data/pages/${pageInfo.filename}`);
+              z.file(fname, blobstore.BlobReader(page).read());
+          }
+          const urls = {};
+          urls['mp3'] = "./data/music.mp3";
+          urls['ogg'] = "./data/music.ogg";
+          urls['pages'] = pageUrls;
+          const data = JSON.parse(song.json);
+          const template = templates.getTemplate("export/archive.mako");
+          const pageSrc = template.render({ data: data, urls: urls, song_id: song_id });
+          z.file("export/archive.html", pageSrc);
+          
+          z.generateAsync({ type: "blob" }).then(content => {
+              this.response.headers["Content-Type"] = "multipart/x-zip";
+              this.response.headers['Content-Disposition'] = "attachment; filename=your_website.zip";
+              this.response.out.write(content);
+          });
+      }
+  }
+  
+  class ServeHandler extends blobstore_handlers.BlobstoreDownloadHandler {
+      get(resource) {
+          checkLogin(this);
+          resource = decodeURIComponent(resource);
+          const blobInfo = blobstore.BlobInfo.get(resource);
+          this.sendBlob(blobInfo);
+      }
+  }
+  
+  const app = new webapp2.WSGIApplication([
+      ['/', MainHandler],
+      ['/delete_many', DeleteManyHandler],
+      ['/songs', ListSongsHandler],
+      ['/delete/([^/]+)', DeleteHandler],
+      ['/upload', UploadHandler],
+      ['/login', SignInHandler],
+      ['/serve/([^/]+)', ServeHandler],
+      ['/time_edit/([^/]+)', TimeEditHandler],
+      ['/box_edit/([^/]+)', BoxEditHandler],
+      ['/zip/([^/]+)', ZipFileHandler],
+      ['/example', ExampleHandler],
+      ['/example_with_data', DataExampleHandler],
+  ], { debug: true });

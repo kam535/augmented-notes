@@ -360,11 +360,18 @@ prevpg.click(function() {
   </div>
   <div class="left_panel score-div">
     <script type='text/javascript'>
-      for (url in urls['pages']) {
-        <div class="score-page">
-          <img class="score" src="${url}" width="559" alt="Scan"></img>
-        </div>
-      }
+       urls.pages.forEach(url => {
+        const scorePageDiv = document.createElement('div');
+        scorePageDiv.className = 'score-page';
+
+        const img = document.createElement('img');
+        img.className = 'score';
+        img.src = url;
+        img.width = 559;
+        img.alt = 'Scan';
+
+        scorePageDiv.appendChild(img);
+      });
       </script>
   </div>
   <div class="right_panel" style="width:100px;">

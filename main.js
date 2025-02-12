@@ -1,30 +1,3 @@
-import os from 'os';
-import path from 'path';
-import urllib from 'urllib';
-import webapp2 from 'webapp2';
-import sys from 'sys';
-import glob from 'glob';
-import zipfile from 'zipfile';
-import { StringIO } from 'stringio';
-import json from 'json';
-import requests from 'requests';
-
-// For local testing only, the local runner seems to miss lxml
-sys.path.append("/Users/dplepage/.virtualenvs/augnotes/lib/python2.7/site-packages/");
-sys.path.append("/Users/jswafford/.virtualenvs/AugNotes/lib/python2.7/site-packages/");
-import lxml from 'lxml';
-
-import { db } from 'google.appengine.ext';
-import { users } from 'google.appengine.api';
-import { blobstore } from 'google.appengine.ext';
-import { blobstore_handlers } from 'google.appengine.ext.webapp';
-
-import { TemplateLookup } from 'mako.lookup';
-
-import { parse_mei } from 'parse_mei';
-
-const templates = new TemplateLookup({ directories: ['templates'] });
-
 // ===========================
 // = Example Data Generators =
 // ===========================

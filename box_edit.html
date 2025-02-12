@@ -23,7 +23,7 @@
   <script src="/improved-octo-potato/static/js/augnotes.js"></script>
   <script src="/improved-octo-potato/static/js/augnotesui.js"></script>
   <script>
-    var augmented_notes_data = ${json.dumps(data)};
+    var augmented_notes_data = JSON.parse('${JSON.stringify(data)}');
   </script>
 
   <style type='text/css'>
